@@ -22,4 +22,6 @@ public interface MemberService {
 	public void deleteMember(MemberDTO memberDTO);
 	
 	public List<MemberDTO> getMemberList();
+	
+	public MemberDTO getMemberEmail(String email);
 }

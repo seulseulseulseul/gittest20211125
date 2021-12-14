@@ -60,6 +60,7 @@ public class MemberDAOImpl implements MemberDAO{
 //	String getMembersql = "select * from member where id=?";
 	@Override
 	public MemberDTO getMember(String id) {
+		System.out.println("DAOImpl getMember");
 		// 디비에서 가져온 내용을 MemberDTO 매핑해서 저장
 //		RowMapper<MemberDTO> mapper = new BeanPropertyRowMapper<MemberDTO>(MemberDTO.class);
 //		return template.queryForObject(getMembersql, mapper , id);
@@ -79,6 +80,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberDTO> getMemberList() {
 		System.out.println("MemberDAOImpl getMemberList()");
 		return sqlSession.selectList(namespace+".getMemberList");
+	}
+	@Override
+	public MemberDTO getMemberEmail(String email) {
+		return sqlSession.selectOne(namespace+".getMemberEmail",email);
 	}
 
 }//클래스

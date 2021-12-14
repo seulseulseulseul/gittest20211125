@@ -22,4 +22,7 @@ public interface MemberDAO {
 	public void deleteMember(MemberDTO memberDTO);
 	
 	public List<MemberDTO> getMemberList();
+	
+	//리턴할 형 MemberDTO getMember(String id) 메서드
+	public MemberDTO getMemberEmail(String email);
 }

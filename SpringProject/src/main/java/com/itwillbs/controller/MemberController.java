@@ -198,4 +198,16 @@ public class MemberController {
 		
 		return "redirect:/member/main";
 	}
+	
+//-----------------------------------------------
+	@RequestMapping(value = "/test/test1", method = RequestMethod.GET)
+	public String test1() {
+//		/WEB-INF/views/member/test1.jsp => 이동
+		return "test/test1";
+	}
+	@RequestMapping(value = "/test/test2", method = RequestMethod.GET)
+	public String test2() {
+//		/WEB-INF/views/member/test2.jsp => 이동
+		return "test/test2";
+	}
 }

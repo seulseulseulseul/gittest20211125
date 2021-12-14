@@ -9,8 +9,15 @@ public class MemberDTO {
 	private String pass;
 	private String name;
 	private Timestamp date;
+	private String email;
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	// 멤버함수(메서드)
 	// 멤버변수를 접근할 통로
 	// set get 메서드 만들기 alt shift s => r

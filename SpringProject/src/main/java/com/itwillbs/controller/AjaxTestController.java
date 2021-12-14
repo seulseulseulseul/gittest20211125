@@ -15,11 +15,11 @@ import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
 
 @RestController
-public class Ajaxcontroller {
+public class AjaxTestController {
 	@Inject
 	private MemberService memberService;
 	
-	@RequestMapping(value="/member/idCheck",method=RequestMethod.GET)
+	@RequestMapping(value="/test/ajaxtest1",method=RequestMethod.GET)
 	public ResponseEntity<String> idCheck(HttpServletRequest request) {
 		// /member/idCheck?id=값
 		String id=request.getParameter("id");
@@ -36,17 +36,34 @@ public class Ajaxcontroller {
 		//데이터 담아서 ajax호출한 곳으로 리턴 
 		return entity;
 	}
-	//회원목록
-	@RequestMapping(value="/member/list2",method=RequestMethod.GET)
-	public ResponseEntity<List<MemberDTO>> list2(HttpServletRequest request) {
-	
-		List<MemberDTO> memberList = memberService.getMemberList();
+	@RequestMapping(value="/test/ajaxtest2",method=RequestMethod.GET)
+	public ResponseEntity<String> emailCheck(HttpServletRequest request) {
+		String result = "";
+		String email = request.getParameter("email");
 		
-		ResponseEntity<List<MemberDTO>> entity = new ResponseEntity<List<MemberDTO>>(memberList, HttpStatus.OK);
-		
-		//memberList => 자동으로 JSON으로 변경하는 프로그램 설치
+		MemberDTO memberDTO = memberService.getMemberEmail(email);
+		if(memberDTO==null) {
+			result="emailok"; //아이디 없음 아이디 사용가능
+		}else {
+			result="emaildup"; //아이디 있음 아이디 중복
+		}
+		ResponseEntity<String> entity=new ResponseEntity<String>(result, HttpStatus.OK);
 		
 		//데이터 담아서 ajax호출한 곳으로 리턴 
 		return entity;
 	}
+	//회원목록
+	@RequestMapping(value="/test/ajaxtest3",method=RequestMethod.GET)
+	public ResponseEntity<List<MemberDTO>> list(HttpServletRequest request) {
+		
+		List<MemberDTO> memberList = memberService.getMemberList();
+			
+		ResponseEntity<List<MemberDTO>> entity = new ResponseEntity<List<MemberDTO>>(memberList, HttpStatus.OK);
+			
+		//memberList => 자동으로 JSON으로 변경하는 프로그램 설치
+			
+		//데이터 담아서 ajax호출한 곳으로 리턴 
+		return entity;
+	}
+	
 }
